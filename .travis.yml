@@ -1,0 +1,17 @@
+language: node_js
+
+node_js:
+  - 6.5.0
+
+install:
+  - npm install
+
+before_script:
+  ## the '-- --silent' passes arguments
+  ## to http-server which silences its output
+  ## else our travis logs would be cluttered
+  ## with output from HTTP requests
+  - npm start -- --silent &
+
+script:
+  - $(npm bin)/cypress run
